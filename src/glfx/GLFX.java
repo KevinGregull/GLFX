@@ -12,7 +12,7 @@ public class GLFX
 		System.out.println("Test");
 		
 		// Testout
-		System.//FINISH
+		System.out.println("Test");
 		return;
 
 	}
