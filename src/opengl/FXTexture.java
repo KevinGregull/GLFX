@@ -2,6 +2,7 @@ package opengl;
 
 import java.io.IOException;
 
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -9,6 +10,8 @@ import org.newdawn.slick.util.ResourceLoader;
 public class FXTexture
 {
 	private Texture texture;
+	private String name;
+	private FXProperties props;
 	
 	public void loadFromFile(String filename)
 	{
@@ -31,12 +34,25 @@ public class FXTexture
 		// Load the actual Texture
 		try
 		{
-			texture=TextureLoader.getTexture(extension,ResourceLoader.getResourceAsStream(filename));
+			this.texture=TextureLoader.getTexture(extension,ResourceLoader.getResourceAsStream(filename));
 		}
 		catch(IOException e)
 		{
 			System.out.println("File '"+filename+"' could not be found!");
 		}
+	}
+	
+	public FXTexture(String name,String filename,FXProperties props)
+	{
+		this.name=name;
+		this.props=props;
+		loadFromFile(filename);
+	}	
+	
+	public FXTexture(String name,String filename)
+	{
+		this.name=name;
+		loadFromFile(filename);
 	}
 	
 	public FXTexture(String filename)
@@ -50,37 +66,62 @@ public class FXTexture
 	
 	public int getWidth()
 	{
-		return texture.getImageWidth();
+		return this.texture.getImageWidth();
 	}
 	
 	public int getHeight()
 	{
-		return texture.getImageHeight();
+		return this.texture.getImageHeight();
 	}
 	
 	public int getTextureWidth()
 	{
-		return texture.getTextureWidth();
+		return this.texture.getTextureWidth();
 	}
 	
 	public int getTextureHeight()
 	{
-		return texture.getTextureHeight();
+		return this.texture.getTextureHeight();
 	}
 	
 	public void remove()
 	{
-		texture.release();
+		this.texture.release();
 	}
 	
 	public byte[] getData()
 	{
-		return texture.getTextureData();
+		return this.texture.getTextureData();
 	}
 	
 	public int getTextureID()
 	{
-		return texture.getTextureID();
+		return this.texture.getTextureID();
+	}
+	
+	public void setName(String name)
+	{
+		this.name=name;
+	}	
+	
+	public String getName()
+	{
+		return this.name;
+	}
+	
+	public FXProperties getProperties()
+	{
+		return this.props;
+	}
+	
+	public void setProperties(FXProperties props)
+	{
+		this.props=props;
+	}	
+	
+	public void use()
+	{
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D,this.getTextureID());
 	}
 	
 }
