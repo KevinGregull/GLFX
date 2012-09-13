@@ -10,9 +10,6 @@ public class GLFX
 	{
 		// TODO Auto-generated method stub
 		System.out.println("Test");
-		// SOME
-		// CODE
-		// HERE
 		return;
 
 	}
