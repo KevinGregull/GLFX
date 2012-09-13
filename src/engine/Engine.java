@@ -1,15 +1,18 @@
 package engine;
 
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 public class Engine
 {
+	// Static Attributes
 	private static int width;
 	private static int height;
 	private static String title;
 	
+	// Static Methods
 	public static int getWidth()
 	{
 		return Engine.width;
@@ -20,21 +23,22 @@ public class Engine
 		return Engine.height;
 	}
 	
-	public void setTitle(String title)
-	{
-		Engine.title=title;
-	}
-	
 	public static String getTitle()
 	{
 		return Engine.title;
 	}	
 	
+	// Constructor
 	public Engine(int width,int height)
 	{
-		// Define static Windowsize
 		Engine.width=width;
 		Engine.height=height;
+	}
+	
+	// Methods
+	public void setTitle(String title)
+	{
+		Engine.title=title;
 	}
 	
 	public void createWindow()
