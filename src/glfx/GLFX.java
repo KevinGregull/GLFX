@@ -9,7 +9,7 @@ public class GLFX
 	public static void main(String[] args)
 	{
 		// TODO Auto-generated method stub
-		// Testcase insert here
+		System.out.println("Test");
 		return;
 
 	}
