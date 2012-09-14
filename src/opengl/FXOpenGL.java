@@ -39,7 +39,7 @@ public class FXOpenGL
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, Engine.getWidth(), Engine.getWidth(), 0, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);	
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 	
 	public FXTextures getTextureManager()
