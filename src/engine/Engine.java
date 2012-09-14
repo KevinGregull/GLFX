@@ -124,7 +124,7 @@ public class Engine
 	{
 		FXTexture texture=Engine.getOpenGL().getTextureManager()
 				.addTexture("default","imgs/test.png");
-		Engine.getOpenGL().getTextureManager().useTexture("default");
+		Engine.getOpenGL().getTextureManager().bindTexture("default");
 
 		while(!Display.isCloseRequested())
 		{
