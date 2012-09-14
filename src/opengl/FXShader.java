@@ -4,9 +4,12 @@ import static org.lwjgl.opengl.ARBFragmentShader.*;
 import static org.lwjgl.opengl.ARBShaderObjects.*;
 import static org.lwjgl.opengl.ARBVertexShader.*;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class FXShader
 {
@@ -16,20 +19,21 @@ public class FXShader
 	
 	public FXShader(String vertfilename,String fragfilename)
 	{
-		File vertfile=new File(vertfilename);
-		
+		// Read Vertex Shader from File
+		String vertShader=FXFile.read(vertfilename);
+		String fragShader=FXFile.read(fragfilename);
 		
 		// Create Shader
 		glCreateProgramObjectARB();
 		
 		// Create VertexShader
 		this.vertID=glCreateShaderObjectARB(GL_VERTEX_SHADER_ARB);
-		glShaderSourceARB(this.vertID,"");
+		glShaderSourceARB(this.vertID,vertShader);
 		glCompileShaderARB(this.vertID);
 		
 		// Create FragmentShader
 		this.fragID=glCreateShaderObjectARB(GL_FRAGMENT_SHADER_ARB);
-		glShaderSourceARB(this.fragID,"");
+		glShaderSourceARB(this.fragID,fragShader);
 		glCompileShaderARB(this.fragID);
 		
 		// Attack Shaders to main Shader
