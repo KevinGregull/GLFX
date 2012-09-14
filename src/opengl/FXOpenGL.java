@@ -16,12 +16,12 @@ public class FXOpenGL
 	public FXOpenGL()
 	{
 		this.init();
-		camera=new FXCamera();
-		textureManager=new FXTextures();
-		shaderManager=new FXShaders();
-		modelManager=new FXModels();
-		sceneManager=new FXScenes();
-		fogManager=new FXFogs();
+		this.camera=new FXCamera();
+		this.textureManager=new FXTextures();
+		this.shaderManager=new FXShaders();
+		this.modelManager=new FXModels();
+		this.sceneManager=new FXScenes();
+		this.fogManager=new FXFogs();
 	}
 	
 	public void init()
