@@ -36,11 +36,11 @@ public class FXShader
 		glShaderSourceARB(this.fragID,fragShader);
 		glCompileShaderARB(this.fragID);
 		
-		// Attack Shaders to main Shader
-        glAttachObjectARB(this.shaderID,this.vertID);
-        glAttachObjectARB(this.shaderID,this.fragID);
-        glLinkProgramARB(this.shaderID);
-        glValidateProgramARB(this.shaderID);
+		// Attach Shaders to main Shader
+		glAttachObjectARB(this.shaderID,this.vertID);
+		glAttachObjectARB(this.shaderID,this.fragID);
+		glLinkProgramARB(this.shaderID);
+		glValidateProgramARB(this.shaderID);
 	}
 	
 	public void bind()
