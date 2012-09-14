@@ -10,15 +10,17 @@ public class FXTextures
 		textures=new HashMap<>();
 	}
 	
-	public void addTexture(String name,String file)
+	public FXTexture addTexture(String name,String file)
 	{
 		textures.put(name,new FXTexture(name,file));
+		return textures.get(name);
 	}
 	
-	public void addTexture(String name,String file,FXProperties props)
+	public FXTexture addTexture(String name,String file,FXProperties props)
 	{
 		textures.put(name,new FXTexture(name,file,props));
-	}
+		return textures.get(name);
+	}	
 	
 	public FXTexture getTexture(String name)
 	{
