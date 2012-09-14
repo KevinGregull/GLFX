@@ -120,13 +120,13 @@ public class FXTexture
 		this.props=props;
 	}	
 	
-	public void use()
+	public void bind()
 	{
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D,this.getTextureID());
 	}
 	
-	public void use(int slot)
+	public void bind(int slot)
 	{
 		switch (slot)
 		{

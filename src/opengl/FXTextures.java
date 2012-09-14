@@ -32,13 +32,13 @@ public class FXTextures
 		return this.textures.get(name).getTextureID();
 	}
 	
-	public void useTexture(String name)
+	public void bindTexture(String name)
 	{
-		this.textures.get(name).use();
+		this.textures.get(name).bind();
 	}
 	
-	public void useTexture(String name,int slot)
+	public void bindTexture(String name,int slot)
 	{
-		this.textures.get(name).use(slot);
+		this.textures.get(name).bind(slot);
 	}	
 }

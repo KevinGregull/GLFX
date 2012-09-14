@@ -42,4 +42,76 @@ public class FXShader
         glLinkProgramARB(this.shaderID);
         glValidateProgramARB(this.shaderID);
 	}
+	
+	public void bind()
+	{
+		glUseProgramObjectARB(this.shaderID);
+	}
+	
+    public void unbind()
+    {
+        glUseProgramObjectARB(0);
+    }
+    
+    public void release()
+    {
+        glDetachObjectARB(this.shaderID,this.vertID);
+        glDetachObjectARB(this.shaderID,this.fragID);
+        glDeleteObjectARB(this.vertID);
+        glDeleteObjectARB(this.fragID);
+        glUseProgramObjectARB(0);
+    } 
+   
+    public void setUniformVec1(String index,float value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform1fARB(location,value);
+    }
+    public void setUniformVec2(String index,Float2D value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform2fARB(location,value.x,value.y);
+    }
+    public void setUniformVec3(String index,Float3D value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform3fARB(location,value.x,value.y,value.z);
+    }
+    public void setUniformVec4(String index,Float4D value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform4fARB(location,value.x,value.y,value.z,value.a);
+    }
+    
+    public void setUniformVec1(String index,int value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform1iARB(location,value);
+    }  
+    public void setUniformVec2(String index,Int2D value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform2iARB(location,value.x,value.y);
+    }
+    public void setUniformVec3(String index,Int3D value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform3iARB(location,value.x,value.y,value.z);
+    }
+    public void setUniformVec4(String index,Int4D value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform4iARB(location,value.x,value.y,value.z,value.a);
+    }
+    
+    public void setUniformTextureID(String index,int value)
+    {
+        int location=glGetUniformLocationARB(this.shaderID,index);
+        glUniform1iARB(location,value);
+    }
+    public void setUniformTexture(String index,FXTexture texture)
+    {
+    	int location=glGetUniformLocationARB(this.shaderID,index);
+    	glUniform1iARB(location,texture.getTextureID());
+    }
 }
