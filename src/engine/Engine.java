@@ -98,63 +98,6 @@ public class Engine
 	public void setIcon(String filename)
 	{
 		Display.setIcon(BufferLoader.loadIcon(filename));
-	}	
-	
-	private ByteBuffer createIcon(int width,int height,boolean fixAlphas,boolean makeBlackTransparent,FXTexture texture)
-	{
-		// Save original draw buffer
-		int drawBuffer=glGetInteger(GL_DRAW_BUFFER);
-
-		// Draw & stretch a width by height icon onto the back buffer
-		glDrawBuffer(GL_BACK);
-		texture.use();
-		glBegin(GL_QUADS);
-		glTexCoord2f(0,0);
-		glVertex2f(0,0);
-		glTexCoord2f(1,0);
-		glVertex2f(width,0);
-		glTexCoord2f(1,1);
-		glVertex2f(width,height);
-		glTexCoord2f(0,1);
-		glVertex2f(0,height);
-		glEnd();
-
-		// Read the back buffer into the byte buffer icon
-		glReadBuffer(GL_BACK);
-		ByteBuffer icon=BufferUtils.createByteBuffer(width*height*4);
-		glReadPixels(0,0,width,height,GL_RGBA,GL_BYTE,icon);
-
-		// fixAlphas: In case of OpenGL blending and/or bitmap problems
-		// makeBlackTransparent: Cycle through and set black to be transparent
-		if(fixAlphas||makeBlackTransparent)
-		{
-			for(int y=0;y<height;y++)
-			{
-				for(int x=0;x<width;x++)
-				{
-					int color=y*4*width+x*4;
-					int red=icon.get(color);
-					int green=icon.get(color+1);
-					int blue=icon.get(color+2);
-
-					if(makeBlackTransparent&&red==0&&green==0&&blue==0)
-					{
-						icon.put(color+3,(byte)0);
-					}
-					else
-						if(fixAlphas)
-						{
-							icon.put(color+3,(byte)255);
-						}
-				}
-				System.out.println();
-			}
-		}
-
-		// Set back to original draw buffer
-		glDrawBuffer(drawBuffer);
-
-		return(icon);
 	}
 
 	// Constructor
