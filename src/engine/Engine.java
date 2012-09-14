@@ -43,7 +43,6 @@ public class Engine
 	{
 		Engine.width=width;
 		Engine.height=height;
-		Engine.openGL=new FXOpenGL();
 	}
 	
 	// Methods
@@ -52,8 +51,9 @@ public class Engine
 		Engine.title=title;
 	}
 	
-	public void createWindow()
+	public void launchFramework()
 	{
+		// Create Game-Window
 		try
 		{
 			Display.setDisplayMode(new DisplayMode(Engine.getWidth(),Engine.getHeight()));
@@ -65,23 +65,13 @@ public class Engine
 			System.out.println("Display could not be created!");
 		}
 		
-		GL11.glEnable(GL11.GL_TEXTURE_2D);               
-        
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);          
-        
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        
-        GL11.glViewport(0,0,width,height);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
-		GL11.glOrtho(0, width, height, 0, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);		
+		// Start the Engine
+		Engine.openGL=new FXOpenGL();
+		this.testLoop();
 	}
 	
-	public void enterMainLoop()
+	// FIXME: This is only Temporary / Replace with SceneManager
+	public void testLoop()
 	{
 		FXTexture texture=Engine.openGL.getTextureManager().addTexture("default","imgs/test.png");
 		texture.use();

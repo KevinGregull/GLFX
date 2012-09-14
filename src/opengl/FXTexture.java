@@ -3,6 +3,7 @@ package opengl;
 import java.io.IOException;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -123,5 +124,26 @@ public class FXTexture
 	{
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D,this.getTextureID());
 	}
+	
+	public void use(int slot)
+	{
+		switch (slot)
+		{
+			case 3:
+				GL13.glActiveTexture(GL13.GL_TEXTURE3);
+			break;
+			case 2:
+				GL13.glActiveTexture(GL13.GL_TEXTURE2);
+			break;
+			case 1:
+				GL13.glActiveTexture(GL13.GL_TEXTURE1);
+			break;
+			case 0:
+			default:
+				GL13.glActiveTexture(GL13.GL_TEXTURE0);
+			break;			
+		}
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D,this.getTextureID());
+	}	
 	
 }

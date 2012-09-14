@@ -36,4 +36,9 @@ public class FXTextures
 	{
 		textures.get(name).use();
 	}
+	
+	public void useTexture(String name,int slot)
+	{
+		textures.get(name).use(slot);
+	}	
 }
