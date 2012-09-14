@@ -12,52 +12,58 @@ import org.lwjgl.opengl.GL11;
 public class Engine
 {
 	// Static Attributes
-	private static int width;
-	private static int height;
-	private static String title;
 	private static FXOpenGL openGL;
 	
-	// Static Methods
-	public static int getWidth()
-	{
-		return Engine.width;
-	}
-	
-	public static int getHeight()
-	{
-		return Engine.height;
-	}
-	
-	public static String getTitle()
-	{
-		return Engine.title;
-	}
-	
+	// Static Getter Methods
 	public static FXOpenGL getOpenGL()
 	{
 		return Engine.openGL;
+	}
+	public static int getWidth()
+	{
+		return Display.getWidth();
+	}
+	public static int getHeight()
+	{
+		return Display.getHeight();
+	}
+	public static int getX()
+	{
+		return Display.getX();
+	}
+	public static int getY()
+	{
+		return Display.getY();
+	}
+	public static String getTitle()
+	{
+		return Display.getTitle();
+	}
+	
+	// Static Setter methods
+	public static void setTitle(String title)
+	{
+		Display.setTitle(title);
+	}
+	public static void setConfiguration(int gamma,int brightness,int contrast)
+	{
+		try
+		{
+			Display.setDisplayConfiguration(gamma,brightness,contrast);
+		}
+		catch(LWJGLException e)
+		{
+			System.out.println("Could not configure Display");
+		}
 	}
 	
 	// Constructor
 	public Engine(int width,int height)
 	{
-		Engine.width=width;
-		Engine.height=height;
-	}
-	
-	// Methods
-	public void setTitle(String title)
-	{
-		Engine.title=title;
-	}
-	
-	public void launchFramework()
-	{
-		// Create Game-Window
+		// Create the Display
 		try
 		{
-			Display.setDisplayMode(new DisplayMode(Engine.getWidth(),Engine.getHeight()));
-			Display.setTitle(Engine.getTitle());
+			Display.setDisplayMode(new DisplayMode(width,height));
 			Display.create();
 		}
 		catch (LWJGLException ex)
@@ -65,16 +71,15 @@ public class Engine
 			System.out.println("Display could not be created!");
 		}
 		
-		// Start the Engine
+		// Run OpenGL
 		Engine.openGL=new FXOpenGL();
-		this.testLoop();
 	}
 	
 	// FIXME: This is only Temporary / Replace with SceneManager
 	public void testLoop()
 	{
-		FXTexture texture=Engine.openGL.getTextureManager().addTexture("default","imgs/test.png");
-		texture.use();
+		FXTexture texture=Engine.getOpenGL().getTextureManager().addTexture("default","imgs/test.png");
+		Engine.getOpenGL().getTextureManager().useTexture("default");
 		
 		while (!Display.isCloseRequested())
 		{
