@@ -83,7 +83,7 @@ public class Engine
 	
 	public void enterMainLoop()
 	{
-		FXTexture texture=Engine.openGL.getTextureManager().addTexture("default","src/img/test.png");
+		FXTexture texture=Engine.openGL.getTextureManager().addTexture("default","imgs/test.png");
 		texture.use();
 		
 		while (!Display.isCloseRequested())
