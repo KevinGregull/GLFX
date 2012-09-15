@@ -61,6 +61,11 @@ public class FXShader
 		glDeleteObjectARB(this.fragID);
 		glUseProgramObjectARB(0);
 	}
+	
+	public int getShaderID()
+	{
+		return this.shaderID;
+	}
 
 	public void setUniformVec1(String index,float value)
 	{

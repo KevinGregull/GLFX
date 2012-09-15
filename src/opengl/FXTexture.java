@@ -11,7 +11,6 @@ import org.newdawn.slick.util.ResourceLoader;
 public class FXTexture
 {
 	private Texture texture;
-	private String name;
 	private FXProperties props;
 	
 	public void loadFromFile(String filename)
@@ -43,18 +42,11 @@ public class FXTexture
 		}
 	}
 	
-	public FXTexture(String name,String filename,FXProperties props)
+	public FXTexture(String filename,FXProperties props)
 	{
-		this.name=name;
 		this.props=props;
 		loadFromFile(filename);
 	}	
-	
-	public FXTexture(String name,String filename)
-	{
-		this.name=name;
-		loadFromFile(filename);
-	}
 	
 	public FXTexture(String filename)
 	{
@@ -99,17 +91,7 @@ public class FXTexture
 	{
 		return this.texture.getTextureID();
 	}
-	
-	public void setName(String name)
-	{
-		this.name=name;
-	}	
-	
-	public String getName()
-	{
-		return this.name;
-	}
-	
+		
 	public FXProperties getProperties()
 	{
 		return this.props;

@@ -1,6 +1,6 @@
 package opengl;
 
-import org.lwjgl.opengl.GL11;
+import static org.lwjgl.opengl.GL11.*;
 
 import engine.Engine;
 
@@ -26,20 +26,20 @@ public class FXOpenGL
 	
 	public void init()
 	{
-		GL11.glEnable(GL11.GL_TEXTURE_2D);               
+		glEnable(GL_TEXTURE_2D);               
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);          
+	    glEnable(GL_BLEND);
+	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	    glViewport(0,0,Engine.getWidth(),Engine.getWidth());
 	    
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);          
 	    
-	    GL11.glEnable(GL11.GL_BLEND);
-	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	    
-	    GL11.glViewport(0,0,Engine.getWidth(),Engine.getWidth());
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		glMatrixMode(GL_MODELVIEW);
 	
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
-		GL11.glOrtho(0, Engine.getWidth(), Engine.getWidth(), 0, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, Engine.getWidth(), Engine.getWidth(), 0, 1, -1);
+		glMatrixMode(GL_MODELVIEW);
 	}
 	
 	public FXTextures getTextureManager()

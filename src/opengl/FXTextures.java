@@ -12,13 +12,19 @@ public class FXTextures
 	
 	public FXTexture addTexture(String name,String file)
 	{
-		this.textures.put(name,new FXTexture(name,file));
+		this.textures.put(name,new FXTexture(file));
 		return this.textures.get(name);
 	}
 	
+	public FXTexture addTexture(String name,FXTexture texture)
+	{
+		this.textures.put(name,texture);
+		return this.textures.get(name);
+	}	
+	
 	public FXTexture addTexture(String name,String file,FXProperties props)
 	{
-		this.textures.put(name,new FXTexture(name,file,props));
+		this.textures.put(name,new FXTexture(file,props));
 		return this.textures.get(name);
 	}	
 	
