@@ -1,17 +1,12 @@
 package engine;
 
-import java.nio.ByteBuffer;
-
 import opengl.BufferLoader;
 import opengl.FXOpenGL;
 import opengl.FXTexture;
 
-import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.newdawn.slick.opengl.Texture;
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class Engine
