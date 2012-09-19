@@ -12,7 +12,7 @@ public class GLFX
 	{
 		// Initialize Engine
 		Engine engine=new Engine(1024,768);
-		engine.setIcon("imgs/icon32.png");
+		engine.setIcon("resources/textures/icon32.png");
 		Engine.setTitle("OpenGL FrameworkX");
 		
 		engine.testLoop();
