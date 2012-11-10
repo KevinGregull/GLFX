@@ -140,7 +140,6 @@ public class Engine
             glTexCoord2f(0,1);
             glVertex2f(100,100+texture.getTextureHeight());
             glEnd();
-
             Display.update();
         }
         Display.destroy();
