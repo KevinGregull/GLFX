@@ -3,7 +3,6 @@ package engine;
 import opengl.BufferLoader;
 import opengl.FXOpenGL;
 import opengl.FXTexture;
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -53,7 +52,7 @@ public class Engine
         {
             Display.setDisplayConfiguration(gamma,brightness,contrast);
         }
-        catch (LWJGLException e)
+        catch(LWJGLException e)
         {
             System.out.println("Could not configure Display");
             e.printStackTrace();
@@ -66,7 +65,7 @@ public class Engine
         {
             Display.setDisplayMode(new DisplayMode(width,height));
         }
-        catch (LWJGLException e)
+        catch(LWJGLException e)
         {
             System.out.println("Could not change Resolution");
             e.printStackTrace();
@@ -79,7 +78,7 @@ public class Engine
         {
             Display.setFullscreen(true);
         }
-        catch (LWJGLException e)
+        catch(LWJGLException e)
         {
             System.out.println("Could not change to Fullscreen");
             e.printStackTrace();
@@ -92,7 +91,7 @@ public class Engine
         {
             Display.setFullscreen(false);
         }
-        catch (LWJGLException e)
+        catch(LWJGLException e)
         {
             System.out.println("Could not change to Windowed");
             e.printStackTrace();
@@ -113,7 +112,7 @@ public class Engine
             Display.setDisplayMode(new DisplayMode(width,height));
             Display.create();
         }
-        catch (LWJGLException e)
+        catch(LWJGLException e)
         {
             System.out.println("Display could not be created!");
             e.printStackTrace();
@@ -126,11 +125,10 @@ public class Engine
     // FIXME: This is only Temporary / Replace with SceneManager
     public void testLoop()
     {
-        FXTexture texture=Engine.getOpenGL().getTextureManager()
-                .addTexture("default","resources/textures/test.png");
+        FXTexture texture=Engine.getOpenGL().getTextureManager().addTexture("default","resources/textures/test.png");
         Engine.getOpenGL().getTextureManager().bindTexture("default");
 
-        while (!Display.isCloseRequested())
+        while(!Display.isCloseRequested())
         {
             glBegin(GL_QUADS);
             glTexCoord2f(0,0);
@@ -138,8 +136,7 @@ public class Engine
             glTexCoord2f(1,0);
             glVertex2f(100+texture.getTextureWidth(),100);
             glTexCoord2f(1,1);
-            glVertex2f(100+texture.getTextureWidth(),
-                    100+texture.getTextureHeight());
+            glVertex2f(100+texture.getTextureWidth(),100+texture.getTextureHeight());
             glTexCoord2f(0,1);
             glVertex2f(100,100+texture.getTextureHeight());
             glEnd();
