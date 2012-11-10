@@ -4,17 +4,14 @@ import engine.Engine;
 
 public class GLFX
 {
-	
-	
-	
-	
-	public static void main(String[] args)
-	{
-		// Initialize Engine
-		Engine engine=new Engine(1024,768);
-		engine.setIcon("resources/textures/icon32.png");
-		Engine.setTitle("OpenGL FrameworkX");
-		
-		engine.testLoop();
-	}
+
+    public static void main(String[] args)
+    {
+        // Initialize Engine
+        Engine engine=new Engine(1024,768);
+        engine.setIcon("resources/textures/icon32.png");
+        Engine.setTitle("OpenGL FrameworkX");
+
+        engine.testLoop();
+    }
 }

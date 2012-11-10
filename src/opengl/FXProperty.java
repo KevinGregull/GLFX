@@ -2,5 +2,6 @@ package opengl;
 
 public class FXProperty
 {
-	public static int DENSITY=0;
+
+    public static int DENSITY=0;
 }

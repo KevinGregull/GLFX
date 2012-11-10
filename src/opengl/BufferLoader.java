@@ -9,100 +9,101 @@ import java.nio.ByteBuffer;
 
 public final class BufferLoader
 {
-	public static ByteBuffer[] loadIcon(String filepath)
-	{
-		BufferedImage image=null;
-		try
-		{
-			image=ImageIO.read(new FileInputStream(filepath));
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
 
-		ByteBuffer[] buffers=new ByteBuffer[3];
-		buffers[0]=loadIconInstance(image,128);
-		buffers[1]=loadIconInstance(image,32);
-		buffers[2]=loadIconInstance(image,16);
+    public static ByteBuffer[] loadIcon(String filepath)
+    {
+        BufferedImage image=null;
+        try
+        {
+            image=ImageIO.read(new FileInputStream(filepath));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
-		return buffers;
-	}
+        ByteBuffer[] buffers=new ByteBuffer[3];
+        buffers[0]=loadIconInstance(image,128);
+        buffers[1]=loadIconInstance(image,32);
+        buffers[2]=loadIconInstance(image,16);
 
-	private static ByteBuffer loadIconInstance(BufferedImage image,int dimension)
-	{
-		BufferedImage scaledIcon=new BufferedImage(dimension,dimension,
-				BufferedImage.TYPE_INT_ARGB_PRE);
-		Graphics2D g=scaledIcon.createGraphics();
+        return buffers;
+    }
 
-		double ratio=getIconRatio(image,scaledIcon);
-		double width=image.getWidth()*ratio;
-		double height=image.getHeight()*ratio;
+    private static ByteBuffer loadIconInstance(BufferedImage image,int dimension)
+    {
+        BufferedImage scaledIcon=new BufferedImage(dimension,dimension,
+                BufferedImage.TYPE_INT_ARGB_PRE);
+        Graphics2D g=scaledIcon.createGraphics();
 
-		g.drawImage(image,(int)((scaledIcon.getWidth()-width)/2),
-				(int)((scaledIcon.getHeight()-height)/2),(int)(width),
-				(int)(height),null);
+        double ratio=getIconRatio(image,scaledIcon);
+        double width=image.getWidth()*ratio;
+        double height=image.getHeight()*ratio;
 
-		g.dispose();
+        g.drawImage(image,(int)((scaledIcon.getWidth()-width)/2),
+                (int)((scaledIcon.getHeight()-height)/2),(int)(width),
+                (int)(height),null);
 
-		return readImageAsByteBuffer(scaledIcon);
-	}
+        g.dispose();
 
-	private static double getIconRatio(BufferedImage originalImage,
-			BufferedImage icon)
-	{
-		double ratio=1;
+        return readImageAsByteBuffer(scaledIcon);
+    }
 
-		if(originalImage.getWidth()>icon.getWidth())
-		{
-			ratio=(double)(icon.getWidth())/originalImage.getWidth();
-		}
-		else
-		{
-			ratio=icon.getWidth()/originalImage.getWidth();
-		}
-		if(originalImage.getHeight()>icon.getHeight())
-		{
-			double r2=(double)(icon.getHeight())/originalImage.getHeight();
+    private static double getIconRatio(BufferedImage originalImage,
+            BufferedImage icon)
+    {
+        double ratio=1;
 
-			if(r2<ratio)
-			{
-				ratio=r2;
-			}
-		}
-		else
-		{
-			double r2=icon.getHeight()/originalImage.getHeight();
+        if (originalImage.getWidth()>icon.getWidth())
+        {
+            ratio=(double)(icon.getWidth())/originalImage.getWidth();
+        }
+        else
+        {
+            ratio=icon.getWidth()/originalImage.getWidth();
+        }
+        if (originalImage.getHeight()>icon.getHeight())
+        {
+            double r2=(double)(icon.getHeight())/originalImage.getHeight();
 
-			if(r2<ratio)
-			{
-				ratio=r2;
-			}
-		}
+            if (r2<ratio)
+            {
+                ratio=r2;
+            }
+        }
+        else
+        {
+            double r2=icon.getHeight()/originalImage.getHeight();
 
-		return ratio;
-	}
+            if (r2<ratio)
+            {
+                ratio=r2;
+            }
+        }
 
-	public static ByteBuffer readImageAsByteBuffer(BufferedImage image)
-	{
-		byte[] imageBuffer=new byte[image.getWidth()*image.getHeight()*4];
+        return ratio;
+    }
 
-		int counter=0;
-		for(int i=0;i<image.getHeight();i++)
-		{
-			for(int j=0;j<image.getWidth();j++)
-			{
-				int colorSpace=image.getRGB(j,i);
+    public static ByteBuffer readImageAsByteBuffer(BufferedImage image)
+    {
+        byte[] imageBuffer=new byte[image.getWidth()*image.getHeight()*4];
 
-				imageBuffer[counter]=(byte)((colorSpace<<8)>>24);
-				imageBuffer[counter+1]=(byte)((colorSpace<<16)>>24);
-				imageBuffer[counter+2]=(byte)((colorSpace<<24)>>24);
-				imageBuffer[counter+3]=(byte)(colorSpace>>24);
+        int counter=0;
+        for (int i=0;i<image.getHeight();i++)
+        {
+            for (int j=0;j<image.getWidth();j++)
+            {
+                int colorSpace=image.getRGB(j,i);
 
-				counter+=4;
-			}
-		}
+                imageBuffer[counter]=(byte)((colorSpace<<8)>>24);
+                imageBuffer[counter+1]=(byte)((colorSpace<<16)>>24);
+                imageBuffer[counter+2]=(byte)((colorSpace<<24)>>24);
+                imageBuffer[counter+3]=(byte)(colorSpace>>24);
 
-		return ByteBuffer.wrap(imageBuffer);
-	}
+                counter+=4;
+            }
+        }
+
+        return ByteBuffer.wrap(imageBuffer);
+    }
 }
